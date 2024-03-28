@@ -7,7 +7,22 @@ export const servicesService = {
         return service
     },
 
-    updateService: async () => {
-        
+    updateService: async (id: number, attributes: {
+        serviceName: string,
+        description: string
+        durationTime: number
+        price: number
+    }) => {
+        const [ affectedRows, updatedService ] = await Service.update(attributes, { where: { id }, returning: true } )
+
+        return updatedService[0]
+    },
+
+    deleteService: async (serviceId: number) => {
+        await Service.destroy({
+            where: {
+                id: serviceId
+            }
+        })
     }
 }

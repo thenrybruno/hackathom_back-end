@@ -13,6 +13,8 @@ router.post('/auth/login', authController.login)
 //Rotas de serviços: Listar serviços, cadastrar novo serviço, atualizar serviço e deletar serviço.
 router.get('/services', servicesController.index)
 router.post('/services', ensureAuth, servicesController.create)
+router.put('/services/:id', ensureAuth, servicesController.update)
+router.delete('/services/:id', ensureAuth, servicesController.delete)
 
 
 export { router }
